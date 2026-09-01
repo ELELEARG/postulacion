@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postulación Secretarías 2026 — EL EJE</title>
+<meta name="description" content="Postulación a las Secretarías 2026 de El Eje. Primera etapa del proceso de incorporación a la conducción nacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-dark:#0A2E3D;
+    --teal-mid:#12404F;
+    --teal-soft:#1A4A5A;
+    --gold:#C8A951;
+    --gold-bright:#E4C878;
+    --fire:#E85D26;
+    --cream:#F5F0E8;
+    --black:#080B0C;
+    --red:#C4462F;
+    --red-soft:#FF9D7A;
+    --line:rgba(200,169,81,0.22);
+    --display:'Bebas Neue', Impact, sans-serif;
+    --head:'Oswald', sans-serif;
+    --body:'Barlow', system-ui, sans-serif;
+    --serif:'Playfair Display', Georgia, serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{height:100%;}
+  body{
+    font-family:var(--body);
+    background:var(--black);
+    color:var(--cream);
+    min-height:100%;
+    position:relative;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Fondo anclado al viewport. Si vive en el <body> se estira sobre todo el
+     largo del formulario y los cortes del degradé quedan lavados durante el
+     scroll. En una capa fixed el efecto se ve completo siempre. */
+  .bg-layer{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse at 18% -8%, rgba(232,93,38,0.18), transparent 48%),
+      radial-gradient(ellipse at 108% 12%, rgba(200,169,81,0.15), transparent 46%),
+      radial-gradient(ellipse at 50% 118%, rgba(26,74,90,0.55), transparent 62%),
+      linear-gradient(165deg, var(--black) 0%, var(--teal-dark) 36%, var(--teal-mid) 66%, var(--black) 100%);
+  }
+  .bg-layer::after{
+    content:""; position:absolute; inset:0; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .cardinal{
+    position:fixed; z-index:2; font-family:var(--head); font-weight:600;
+    letter-spacing:0.3em; font-size:11px; color:var(--gold); opacity:0.5;
+    pointer-events:none;
+  }
+  .cardinal.n{top:20px; left:50%; transform:translateX(-50%);}
+  .cardinal.s{bottom:20px; left:50%; transform:translateX(-50%);}
+  .cardinal.e{right:18px; top:50%; transform:translateY(-50%);}
+  .cardinal.w{left:18px; top:50%; transform:translateY(-50%);}
+  /* En pantallas angostas las letras E/W se montaban sobre el formulario */
+  @media(max-width:900px){ .cardinal.e, .cardinal.w{display:none;} }
+
+  .wrap{position:relative; z-index:3; max-width:760px; margin:0 auto; padding:64px 24px 90px;}
+  @media(max-width:520px){ .wrap{padding:44px 18px 70px;} }
+
+  /* HEADER */
+  .brandmark{display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:34px; animation:fadeDown .8s ease both;}
+  .compass{width:64px; height:64px;}
+  .compass svg{width:100%; height:100%; display:block;}
+  .brand-title{font-family:var(--display); font-size:15px; letter-spacing:0.5em; color:var(--gold-bright); text-indent:0.5em;}
+  .brand-sub{font-family:var(--serif); font-style:italic; font-size:13px; color:rgba(245,240,232,0.55);}
+
+  h1.hero{
+    font-family:var(--display);
+    font-size:clamp(36px, 7.5vw, 60px);
+    text-align:center; line-height:1.02; letter-spacing:0.02em;
+    background:linear-gradient(120deg, var(--cream) 20%, var(--gold-bright) 55%, var(--fire) 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    margin-bottom:10px; animation:fadeDown .9s ease both .1s;
+  }
+  .hero-sub{
+    text-align:center; font-family:var(--serif); font-style:italic;
+    color:rgba(245,240,232,0.7); font-size:clamp(14px,3.6vw,17px); margin-bottom:32px;
+    animation:fadeDown .9s ease both .2s;
+  }
+
+  .briefing{
+    border:1px solid var(--line); border-radius:4px; padding:22px 24px; margin-bottom:42px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    animation:fadeDown .9s ease both .3s;
+  }
+  .briefing p{font-size:14.5px; line-height:1.7; color:rgba(245,240,232,0.85); margin-bottom:10px;}
+  .briefing p:last-of-type{margin-bottom:0;}
+  .briefing b{color:var(--gold-bright); font-weight:600;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:9px; margin-top:16px;}
+  .tag{
+    font-family:var(--head); font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase;
+    border:1px solid var(--gold); color:var(--gold-bright); padding:6px 11px; border-radius:2px; font-weight:600;
+  }
+  .tag.fire{border-color:var(--fire); color:#FFB28C;}
+
+  /* STEPPER */
+  .stepper{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:40px; position:relative;}
+  .stepper::before{content:""; position:absolute; top:14px; left:6%; right:6%; height:1px; background:var(--line); z-index:0;}
+  .step-dot{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px; flex:1;}
+  .step-dot .circle{
+    width:29px; height:29px; border-radius:50%; border:1.5px solid var(--line);
+    background:var(--black); display:flex; align-items:center; justify-content:center;
+    font-family:var(--head); font-size:12px; font-weight:700; color:rgba(245,240,232,0.4);
+    transition:all .35s ease;
+  }
+  .step-dot .label{
+    font-family:var(--head); font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(245,240,232,0.35); text-align:center; line-height:1.3; transition:color .35s ease;
+  }
+  @media(max-width:440px){ .step-dot .label{font-size:8.5px; letter-spacing:0.04em;} }
+  .step-dot.active .circle{
+    border-color:var(--gold); background:linear-gradient(160deg,var(--gold),#A9843B);
+    color:var(--black); box-shadow:0 0 18px rgba(200,169,81,0.45);
+  }
+  .step-dot.active .label{color:var(--gold-bright);}
+  .step-dot.done .circle{border-color:var(--gold); color:var(--gold-bright); background:rgba(200,169,81,0.08);}
+  .step-dot.done .label{color:rgba(245,240,232,0.6);}
+
+  /* PANELS */
+  .panel{display:none; animation:fadeIn .45s ease both;}
+  .panel.active{display:block;}
+  .panel-head{margin-bottom:26px; border-bottom:1px solid var(--line); padding-bottom:13px;}
+  .panel-head .kicker{font-family:var(--head); font-size:10.5px; letter-spacing:0.25em; color:var(--fire); text-transform:uppercase; font-weight:600;}
+  .panel-head h2{font-family:var(--display); font-size:clamp(25px,5.5vw,31px); letter-spacing:0.03em; color:var(--cream); margin-top:5px; line-height:1.1;}
+
+  .field{margin-bottom:24px; scroll-margin-top:24px;}
+  .field > label, .field .field-label{
+    display:block; font-family:var(--head); font-size:13.5px; font-weight:500;
+    color:rgba(245,240,232,0.88); margin-bottom:9px; line-height:1.45;
+  }
+  .req{color:var(--fire); margin-left:3px;}
+
+  input[type="text"], input[type="tel"], input[type="email"], input[type="number"], textarea{
+    width:100%; background:rgba(0,0,0,0.28);
+    border:1px solid var(--line); border-bottom:2px solid var(--line); border-radius:3px;
+    padding:13px 14px; color:var(--cream); font-family:var(--body); font-size:15px;
+    transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  textarea{resize:vertical; min-height:100px; line-height:1.6;}
+  input::placeholder, textarea::placeholder{color:rgba(245,240,232,0.3);}
+  input:focus, textarea:focus{
+    outline:none; border-color:var(--gold); border-bottom-color:var(--gold-bright);
+    background:rgba(200,169,81,0.05); box-shadow:0 0 0 3px rgba(200,169,81,0.1);
+  }
+  /* Ocultar flechitas del input number (rompían la estética oscura) */
+  input[type=number]{-moz-appearance:textfield;}
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
+
+  .is-invalid{border-color:var(--red) !important; border-bottom-color:var(--red) !important;}
+  .msg{font-size:12px; color:var(--red-soft); margin-top:7px; display:none; font-family:var(--head); letter-spacing:0.02em;}
+  .msg.show{display:block;}
+
+  .radio-group{display:flex; flex-direction:column; gap:9px;}
+  .opt{
+    display:flex; align-items:flex-start; gap:12px;
+    border:1px solid var(--line); border-radius:3px; padding:12px 14px;
+    cursor:pointer; transition:all .2s ease; background:rgba(255,255,255,0.02);
+  }
+  .opt:hover{border-color:var(--gold); background:rgba(200,169,81,0.06);}
+  .opt input{accent-color:var(--gold); width:16px; height:16px; flex-shrink:0; margin-top:2px; cursor:pointer;}
+  .opt .opt-text{font-size:14.5px; line-height:1.45; color:rgba(245,240,232,0.9);}
+  .opt.selected{border-color:var(--gold-bright); background:rgba(200,169,81,0.1); box-shadow:inset 0 0 0 1px var(--gold-bright);}
+  .opt:focus-within{border-color:var(--gold-bright); box-shadow:0 0 0 3px rgba(200,169,81,0.14);}
+  .radio-group.is-invalid-group .opt{border-color:var(--red);}
+
+  /* Escala */
+  .scale-row{display:flex; gap:6px;}
+  @media(max-width:480px){ .scale-row{display:grid; grid-template-columns:repeat(5,1fr);} }
+  .scale-btn{
+    flex:1; min-width:0; text-align:center; padding:12px 0;
+    border:1px solid var(--line); border-radius:3px; cursor:pointer;
+    font-family:var(--head); font-size:13.5px; color:rgba(245,240,232,0.65);
+    background:rgba(255,255,255,0.02); transition:all .18s ease;
+  }
+  .scale-btn:hover{border-color:var(--gold); color:var(--cream);}
+  .scale-btn:focus-visible{outline:2px solid var(--gold-bright); outline-offset:2px;}
+  .scale-btn[aria-checked="true"]{
+    background:linear-gradient(160deg,var(--gold),#A9843B); color:var(--black);
+    border-color:var(--gold-bright); font-weight:700;
+  }
+  .scale-row.is-invalid-group .scale-btn{border-color:var(--red);}
+  .scale-labels{display:flex; justify-content:space-between; font-family:var(--serif); font-style:italic; font-size:11px; color:rgba(245,240,232,0.42); margin-top:9px;}
+
+  /* Tarjetas de área */
+  .area-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; border-radius:6px;}
+  @media(max-width:560px){ .area-grid{grid-template-columns:1fr;} }
+  .area-grid.is-invalid-group{outline:1px solid var(--red); outline-offset:10px;}
+  .area-card{
+    border:1px solid var(--line); border-radius:5px; padding:20px 18px;
+    cursor:pointer; transition:all .25s ease; position:relative; overflow:hidden;
+    background:linear-gradient(160deg, rgba(255,255,255,0.035), rgba(255,255,255,0.005));
+  }
+  .area-card::before{
+    content:""; position:absolute; inset:0; opacity:0; transition:opacity .3s ease; pointer-events:none;
+    background:radial-gradient(circle at 30% 0%, rgba(232,93,38,0.18), transparent 60%);
+  }
+  .area-card:hover{border-color:var(--gold); transform:translateY(-2px);}
+  .area-card:hover::before{opacity:1;}
+  .area-card:focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+  .area-card[aria-pressed="true"]{border-color:var(--gold-bright); box-shadow:0 0 22px rgba(200,169,81,0.25); background:rgba(200,169,81,0.09);}
+  .area-card .num{font-family:var(--display); font-size:12px; color:var(--fire); letter-spacing:0.18em;}
+  .area-card h3{font-family:var(--display); font-size:22px; color:var(--cream); margin-top:6px; letter-spacing:0.02em; line-height:1.1;}
+  .area-card p{font-size:13px; color:rgba(245,240,232,0.58); margin-top:7px; line-height:1.5;}
+  .area-card.full{grid-column:1/-1;}
+
+  /* Aviso presencialidad */
+  .alert{
+    display:none; margin-top:16px; border:1px solid var(--red); border-left:3px solid var(--red);
+    background:rgba(196,70,47,0.1); border-radius:3px; padding:14px 16px;
+  }
+  .alert.show{display:block;}
+  .alert p{font-size:13.5px; line-height:1.6; color:#FFC4B0;}
+
+  /* Navegación */
+  .nav-row{display:flex; justify-content:space-between; align-items:center; margin-top:40px; gap:14px;}
+  .btn{
+    font-family:var(--head); font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    font-size:13px; padding:14px 28px; border-radius:3px; cursor:pointer;
+    border:1px solid var(--line); background:transparent; color:rgba(245,240,232,0.7);
+    transition:all .2s ease;
+  }
+  .btn:hover:not(:disabled){border-color:var(--cream); color:var(--cream);}
+  .btn:focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+  .btn.primary{
+    background:linear-gradient(120deg, var(--gold) 0%, #B9903F 60%, var(--fire) 130%);
+    color:var(--black); border:1px solid transparent; font-weight:700;
+    box-shadow:0 6px 22px rgba(200,169,81,0.22);
+  }
+  .btn.primary:hover:not(:disabled){transform:translateY(-1px); box-shadow:0 10px 28px rgba(200,169,81,0.38);}
+  .btn:disabled{opacity:0.45; cursor:wait; transform:none !important;}
+  .btn.hidden{visibility:hidden;}
+
+  /* Confirmación */
+  .confirm{display:none; text-align:center; padding:30px 10px 10px; animation:fadeIn .7s ease both;}
+  .confirm.show{display:block;}
+  .confirm .compass{width:84px; height:84px; margin:0 auto 24px;}
+  .confirm h2{font-family:var(--display); font-size:clamp(30px,7vw,40px); color:var(--gold-bright); letter-spacing:0.03em; margin-bottom:14px;}
+  .confirm p{font-size:15.5px; color:rgba(245,240,232,0.82); line-height:1.75; max-width:480px; margin:0 auto 10px;}
+  .confirm .signature{margin-top:32px; font-family:var(--serif); font-style:italic; color:var(--gold); font-size:15px;}
+
+  footer.foot{
+    text-align:center; margin-top:58px; padding-top:22px; border-top:1px solid var(--line);
+    font-family:var(--head); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.35);
+  }
+
+  @keyframes fadeDown{from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  /* Respeta la preferencia del sistema de reducir animaciones */
+  @media(prefers-reduced-motion:reduce){
+    *, *::before, *::after{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer" aria-hidden="true"></div>
+<span class="cardinal n" aria-hidden="true">N</span>
+<span class="cardinal s" aria-hidden="true">S</span>
+<span class="cardinal e" aria-hidden="true">E</span>
+<span class="cardinal w" aria-hidden="true">W</span>
+
+<div class="wrap">
+
+  <header class="brandmark">
+    <div class="compass" aria-hidden="true">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Logo El Eje">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#C8A951" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#C8A951" stroke-width="0.6" opacity="0.35"/>
+        <polygon points="50,6 56,50 50,94 44,50" fill="#C8A951"/>
+        <polygon points="6,50 50,44 94,50 50,56" fill="#E85D26"/>
+        <polygon points="50,6 56,50 50,56 44,50" fill="#F5F0E8"/>
+        <circle cx="50" cy="50" r="4.5" fill="#0A0A0A" stroke="#C8A951" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="brand-title">EL EJE</div>
+    <div class="brand-sub">de una Argentina libre</div>
+  </header>
+
+  <h1 class="hero">POSTULACIÓN<br>SECRETARÍAS 2026</h1>
+  <p class="hero-sub">Primera etapa del proceso de incorporación a la conducción nacional</p>
+
+  <section class="briefing" id="briefing">
+    <p>El Eje es la organización de formación liberal más grande de la Argentina. Esta postulación es el <b>primer paso de un proceso de tres etapas</b> para incorporar nuevos secretarios, subsecretarios y coordinadores a la estructura nacional.</p>
+    <p>Esta convocatoria es exclusivamente para quienes puedan participar de forma <b>presencial en Buenos Aires</b> — CABA y Provincia. Completá cada sección con seriedad: las respuestas son parte de la evaluación. No busques la respuesta "correcta", buscamos criterio real.</p>
+    <div class="tag-row">
+      <span class="tag fire">Solo Buenos Aires (CABA y Provincia)</span>
+      <span class="tag">Cierre: 20/09/2026</span>
+      <span class="tag">Etapa 1 de 3</span>
+    </div>
+  </section>
+
+  <div class="stepper" id="stepper" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-label="Progreso de la postulación"></div>
+
+  <!-- novalidate: la validación nativa del browser no puede enfocar campos que
+       están en paneles ocultos y bloquea el envío en silencio. Validamos por JS. -->
+  <form id="form" novalidate>
+
+    <!-- 01 · DATOS PERSONALES -->
+    <section class="panel active" data-step="0" aria-label="Datos personales">
+      <div class="panel-head"><div class="kicker">Sección 01</div><h2>Datos personales</h2></div>
+
+      <div class="field">
+        <label for="nombre">Nombre y apellido<span class="req">*</span></label>
+        <input type="text" id="nombre" name="nombre" data-required autocomplete="name" placeholder="Ej: Juan Pérez">
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <label for="dni">DNI<span class="req">*</span></label>
+        <input type="text" id="dni" name="dni" data-required data-validate="dni" inputmode="numeric" maxlength="9" placeholder="Sin puntos ni espacios">
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <label for="edad">Edad<span class="req">*</span></label>
+        <input type="number" id="edad" name="edad" data-required data-validate="edad" min="15" max="99" placeholder="Ej: 22">
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <label for="telefono">WhatsApp / Teléfono<span class="req">*</span></label>
+        <input type="tel" id="telefono" name="telefono" data-required data-validate="tel" autocomplete="tel" inputmode="tel" placeholder="Ej: 11 5555 5555">
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <label for="email">Correo electrónico<span class="req">*</span></label>
+        <input type="email" id="email" name="email" data-required data-validate="email" autocomplete="email" inputmode="email" placeholder="tu@email.com">
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <div class="field-label" id="lbl-distrito">¿Dónde vivís?<span class="req">*</span></div>
+        <div class="radio-group" role="radiogroup" aria-labelledby="lbl-distrito" data-group="distrito">
+          <label class="opt"><input type="radio" name="distrito" value="CABA"><span class="opt-text">Ciudad Autónoma de Buenos Aires (CABA)</span></label>
+          <label class="opt"><input type="radio" name="distrito" value="Provincia de Buenos Aires"><span class="opt-text">Provincia de Buenos Aires</span></label>
+        </div>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <label for="barrio">Barrio, localidad o partido de residencia<span class="req">*</span></label>
+        <input type="text" id="barrio" name="barrio" data-required autocomplete="address-level2" placeholder="Ej: Liniers / San Martín / La Plata">
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <div class="field-label" id="lbl-ocupacion">Situación actual<span class="req">*</span></div>
+        <div class="radio-group" role="radiogroup" aria-labelledby="lbl-ocupacion" data-group="ocupacion">
+          <label class="opt"><input type="radio" name="ocupacion" value="Estudio"><span class="opt-text">Estudio</span></label>
+          <label class="opt"><input type="radio" name="ocupacion" value="Trabajo"><span class="opt-text">Trabajo</span></label>
+          <label class="opt"><input type="radio" name="ocupacion" value="Estudio y trabajo"><span class="opt-text">Estudio y trabajo</span></label>
+          <label class="opt"><input type="radio" name="ocupacion" value="Ninguna de las anteriores"><span class="opt-text">Ninguna de las anteriores</span></label>
+        </div>
+        <div class="msg"></div>
+      </div>
+      <div class="field">
+        <label for="instagram">Instagram u otra red social <span style="opacity:.5">(opcional)</span></label>
+        <input type="text" id="instagram" name="instagram" placeholder="@usuario">
+      </div>
+    </section>
+
+    <!-- 02 · CRITERIO -->
+    <section class="panel" data-step="1" aria-label="Criterio y trabajo en equipo">
+      <div class="panel-head"><div class="kicker">Sección 02</div><h2>Criterio y trabajo en equipo</h2></div>
+
+      <div class="field">
+        <label for="q_porque">¿Por qué querés formar parte de El Eje?<span class="req">*</span></label>
+        <textarea id="q_porque" name="q_porque" data-required placeholder="Contanos con tus palabras..."></textarea>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label" id="lbl-q1">Te asignan una tarea sin instrucciones claras de cómo hacerla. ¿Qué hacés primero?<span class="req">*</span></div>
+        <div class="radio-group" role="radiogroup" aria-labelledby="lbl-q1" data-group="q_instrucciones">
+          <label class="opt"><input type="radio" name="q_instrucciones" value="Espero a que me expliquen paso a paso"><span class="opt-text">Espero a que me expliquen paso a paso antes de empezar</span></label>
+          <label class="opt"><input type="radio" name="q_instrucciones" value="Actúo con mi criterio y después informo"><span class="opt-text">Actúo con mi propio criterio y después informo lo que hice</span></label>
+          <label class="opt"><input type="radio" name="q_instrucciones" value="Pregunto una vez lo esencial y avanzo"><span class="opt-text">Pregunto una sola vez lo esencial y avanzo</span></label>
+          <label class="opt"><input type="radio" name="q_instrucciones" value="No empiezo hasta tener total certeza"><span class="opt-text">No la empiezo hasta tener total certeza de cómo hacerla</span></label>
+        </div>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label" id="lbl-q2">Un compañero no cumplió su parte de una tarea y el plazo vence hoy. ¿Cuál es tu primera reacción?<span class="req">*</span></div>
+        <div class="radio-group" role="radiogroup" aria-labelledby="lbl-q2" data-group="q_equipo">
+          <label class="opt"><input type="radio" name="q_equipo" value="Aviso al grupo y propongo cómo resolverlo"><span class="opt-text">Aviso al grupo y propongo cómo resolverlo entre todos</span></label>
+          <label class="opt"><input type="radio" name="q_equipo" value="Lo resuelvo yo sin decir nada"><span class="opt-text">Lo resuelvo yo mismo sin decir nada, para no generar conflicto</span></label>
+          <label class="opt"><input type="radio" name="q_equipo" value="Se lo reclamo directamente a esa persona"><span class="opt-text">Se lo reclamo directamente a esa persona antes que a nadie más</span></label>
+          <label class="opt"><input type="radio" name="q_equipo" value="Espero indicaciones del coordinador"><span class="opt-text">Espero indicaciones de mi coordinador antes de actuar</span></label>
+        </div>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <label for="q_situacion">Contanos una situación real en la que tuviste que resolver un problema sin que nadie te lo indicara<span class="req">*</span></label>
+        <textarea id="q_situacion" name="q_situacion" data-required></textarea>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label" id="lbl-q3">No estás de acuerdo con una decisión de tu coordinador. ¿Qué hacés?<span class="req">*</span></div>
+        <div class="radio-group" role="radiogroup" aria-labelledby="lbl-q3" data-group="q_desacuerdo">
+          <label class="opt"><input type="radio" name="q_desacuerdo" value="Se lo planteo directamente"><span class="opt-text">Se lo planteo directamente y expongo mi punto de vista</span></label>
+          <label class="opt"><input type="radio" name="q_desacuerdo" value="La acato igual"><span class="opt-text">La acato igual, aunque no esté de acuerdo</span></label>
+          <label class="opt"><input type="radio" name="q_desacuerdo" value="Lo comento primero con otros compañeros"><span class="opt-text">Lo comento primero con otros compañeros antes de decir algo</span></label>
+          <label class="opt"><input type="radio" name="q_desacuerdo" value="Sigo mi criterio sin avisar"><span class="opt-text">Sigo mi propio criterio sin avisar</span></label>
+        </div>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <label for="q_critica">Te hacen una crítica fuerte sobre tu trabajo delante del resto del equipo. ¿Cómo reaccionás?<span class="req">*</span></label>
+        <textarea id="q_critica" name="q_critica" data-required></textarea>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label" id="lbl-escala">Del 1 al 10, ¿qué tan cómodo te sentís tomando decisiones importantes sin que nadie te esté supervisando?<span class="req">*</span></div>
+        <div class="scale-row" role="radiogroup" aria-labelledby="lbl-escala" data-group="q_autonomia" data-scale></div>
+        <div class="scale-labels"><span>Nada cómodo</span><span>Totalmente cómodo</span></div>
+        <div class="msg"></div>
+      </div>
+
+      <div class="field">
+        <label for="q_lealtad">¿Qué es más importante en un equipo: la lealtad personal o el cumplimiento de los objetivos, incluso si eso genera fricción? Explicá por qué<span class="req">*</span></label>
+        <textarea id="q_lealtad" name="q_lealtad" data-required></textarea>
+        <div class="msg"></div>
+      </div>
+    </section>
+
+    <!-- 03 · ÁREA -->
+    <section class="panel" data-step="2" aria-label="Elección de secretaría">
+      <div class="panel-head"><div class="kicker">Sección 03</div><h2>Elegí tu secretaría</h2></div>
+      <div class="area-grid" id="areaGrid" role="radiogroup" aria-label="Secretarías disponibles" data-group="area">
+        <div class="area-card" data-area="admision" tabindex="0" role="radio" aria-checked="false" aria-pressed="false">
+          <div class="num">01</div><h3>Admisión y Crecimiento</h3>
+          <p>Nuevos ingresos, comunidad y retención de miembros.</p>
+        </div>
+        <div class="area-card" data-area="comunicacion" tabindex="0" role="radio" aria-checked="false" aria-pressed="false">
+          <div class="num">02</div><h3>Comunicación</h3>
+          <p>Contenido, redes y presencia pública de El Eje.</p>
+        </div>
+        <div class="area-card" data-area="formacion" tabindex="0" role="radio" aria-checked="false" aria-pressed="false">
+          <div class="num">03</div><h3>Formación y Eventos</h3>
+          <p>Formación política, eventos y protocolo.</p>
+        </div>
+        <div class="area-card" data-area="rrii" tabindex="0" role="radio" aria-checked="false" aria-pressed="false">
+          <div class="num">04</div><h3>Relaciones Institucionales</h3>
+          <p>Vínculos con instituciones, referentes y espacios políticos.</p>
+        </div>
+        <div class="area-card full" data-area="territorio" tabindex="0" role="radio" aria-checked="false" aria-pressed="false">
+          <div class="num">05</div><h3>Territorio</h3>
+          <p>Expansión federal, reclutamiento territorial y análisis de zonas.</p>
+        </div>
+      </div>
+      <input type="hidden" name="area" id="areaInput">
+      <div class="msg" id="areaMsg" aria-live="polite">Elegí una secretaría para continuar.</div>
+    </section>
+
+    <!-- 04 · ESPECÍFICO POR ÁREA -->
+    <section class="panel" data-step="3" aria-label="Postulación específica">
+      <div class="panel-head"><div class="kicker">Sección 04</div><h2 id="areaTitle">Tu postulación</h2></div>
+      <div id="areaFields"></div>
+    </section>
+
+    <!-- 05 · CIERRE -->
+    <section class="panel" data-step="4" aria-label="Cierre">
+      <div class="panel-head"><div class="kicker">Sección 05</div><h2>Cierre</h2></div>
+
+      <div class="field">
+        <div class="field-label" id="lbl-presencial">Confirmo que puedo asistir de forma presencial a actividades en Buenos Aires<span class="req">*</span></div>
+        <div class="radio-group" role="radiogroup" aria-labelledby="lbl-presencial" data-group="presencial">
+          <label class="opt"><input type="radio" name="presencial" value="Sí"><span class="opt-text">Sí, puedo asistir presencialmente en Buenos Aires</span></label>
+          <label class="opt"><input type="radio" name="presencial" value="No"><span class="opt-text">No puedo garantizar presencialidad en Buenos Aires</span></label>
+        </div>
+        <div class="msg"></div>
+        <div class="alert" id="presencialAlert">
+          <p>La presencialidad en Buenos Aires es un requisito excluyente de esta convocatoria. Si tu situación cambia, escribinos y lo revisamos.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="extra">¿Algo más que quieras contarnos sobre vos? <span style="opacity:.5">(opcional)</span></label>
+        <textarea id="extra" name="extra" placeholder="Opcional"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="opt">
+          <input type="checkbox" name="acepto" id="acepto" value="Sí">
+          <span class="opt-text">Acepto que El Eje se contacte conmigo vía WhatsApp o el medio de contacto proporcionado para continuar con el proceso de postulación.<span class="req">*</span></span>
+        </label>
+        <div class="msg" id="aceptoMsg"></div>
+      </div>
+    </section>
+
+    <div class="nav-row">
+      <button type="button" class="btn hidden" id="btnBack">Atrás</button>
+      <button type="button" class="btn primary" id="btnNext">Siguiente</button>
+      <button type="submit" class="btn primary" id="btnSubmit" style="display:none;">Enviar postulación</button>
+    </div>
+  </form>
+
+  <div class="confirm" id="confirmScreen" role="status" aria-live="polite">
+    <div class="compass" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#C8A951" stroke-width="1.2" opacity="0.55"/>
+        <polygon points="50,6 56,50 50,94 44,50" fill="#C8A951"/>
+        <polygon points="6,50 50,44 94,50 50,56" fill="#E85D26"/>
+        <circle cx="50" cy="50" r="4.5" fill="#0A0A0A" stroke="#C8A951" stroke-width="1"/>
+      </svg>
+    </div>
+    <h2>POSTULACIÓN RECIBIDA</h2>
+    <p>Gracias por dar este paso. Tu postulación quedó registrada y nuestro equipo se va a estar contactando a la brevedad para continuar con las próximas etapas del proceso.</p>
+    <p>Esto recién empieza.</p>
+    <div class="signature">Los jóvenes primero. — El Eje</div>
+  </div>
+
+  <footer class="foot">El Eje — de una Argentina libre &nbsp;·&nbsp; Postulación Secretarías 2026</footer>
+</div>
+
+<script src="config.js"></script>
+<script>
+/* ============================================================
+   ENVÍO DE DATOS
+   Mientras ENDPOINT_URL esté vacío el formulario valida y muestra
+   la pantalla de confirmación, pero NO guarda nada en ningún lado
+   (solo queda en la consola). Para recibir postulaciones de verdad,
+   pegar acá la URL de un Google Apps Script Web App conectado a un
+   Sheet, o de Formspree / un backend propio.
+============================================================ */
+const ENDPOINT_URL = (window.ELEJE_CONFIG && window.ELEJE_CONFIG.endpoint) || "";
+
+const AREAS = {
+  admision:{
+    label:"Admisión y Crecimiento",
+    subareas:["Admisión","Comunidad","Retención"],
+    idea:"Pensando en Admisión y Crecimiento: ¿qué idea concreta e innovadora aportarías para captar más gente y que se quede en la organización?",
+    exp:"¿Qué experiencia previa tenés relacionada (entrevistas, atención a personas, comunidad, redes)?"
+  },
+  comunicacion:{
+    label:"Comunicación",
+    subareas:["Creación de contenido","Producción creativa"],
+    idea:"Pensando en Comunicación: ¿qué idea concreta e innovadora aportarías para hacer crecer las redes de El Eje?",
+    exp:"¿Qué experiencia previa tenés (redes sociales, edición, diseño, guion, oratoria)?"
+  },
+  formacion:{
+    label:"Formación y Eventos",
+    subareas:["Gestión de eventos","Protocolo y Ceremonial","Proyección y armado"],
+    idea:"Pensando en Formación y Eventos: ¿qué idea concreta e innovadora aportarías para un evento o programa de formación?",
+    exp:"¿Qué experiencia previa tenés (organización de eventos, oratoria, docencia, protocolo)?"
+  },
+  rrii:{
+    label:"Relaciones Institucionales",
+    subareas:[],
+    idea:"Pensando en Relaciones Institucionales: ¿qué idea concreta aportarías para conseguir nuevos vínculos institucionales o con referentes?",
+    exp:"¿Qué experiencia previa tenés (contactos políticos, instituciones, redacción institucional)?"
+  },
+  territorio:{
+    label:"Territorio",
+    subareas:["Expansión Territorial","Reclutamiento","Análisis territorial"],
+    idea:"Pensando en Territorio: ¿qué idea concreta e innovadora aportarías para expandir la presencia de El Eje en tu zona?",
+    exp:"¿Qué experiencia previa tenés (militancia territorial, organización de grupos, contacto con referentes barriales)?"
+  }
+};
+
+const STEPS = ["Datos","Criterio","Área","Postulación","Cierre"];
+let currentStep = 0;
+let selectedArea = null;
+let builtArea = null;   // evita reconstruir el panel y borrar lo ya escrito
+let submitting = false;
+
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+/* ---------- Escala 1-10 (generada por JS, accesible por teclado) ---------- */
+const scaleRow = $('[data-scale]');
+for(let n=1; n<=10; n++){
+  const b = document.createElement('div');
+  b.className = 'scale-btn';
+  b.textContent = n;
+  b.dataset.val = n;
+  b.setAttribute('role','radio');
+  b.setAttribute('aria-checked','false');
+  b.tabIndex = 0;
+  scaleRow.appendChild(b);
+}
+scaleRow.addEventListener('click', e => {
+  const btn = e.target.closest('.scale-btn');
+  if(btn) pickScale(btn);
+});
+scaleRow.addEventListener('keydown', e => {
+  const btn = e.target.closest('.scale-btn');
+  if(!btn) return;
+  if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pickScale(btn); }
+  if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+    e.preventDefault();
+    const all = Array.from(scaleRow.children);
+    const i = all.indexOf(btn);
+    const next = all[e.key === 'ArrowRight' ? Math.min(i+1, all.length-1) : Math.max(i-1, 0)];
+    next.focus(); pickScale(next);
+  }
+});
+function pickScale(btn){
+  Array.from(scaleRow.children).forEach(b => b.setAttribute('aria-checked','false'));
+  btn.setAttribute('aria-checked','true');
+  scaleRow.dataset.value = btn.dataset.val;
+  clearGroupError(scaleRow);
+}
+
+/* ---------- Stepper ---------- */
+function renderStepper(){
+  $('#stepper').innerHTML = STEPS.map((label,i) => `
+    <div class="step-dot ${i===currentStep?'active':''} ${i<currentStep?'done':''}">
+      <div class="circle">${i<currentStep?'✓':i+1}</div>
+      <span class="label">${label}</span>
+    </div>`).join('');
+  $('#stepper').setAttribute('aria-valuenow', currentStep+1);
+}
+
+function showStep(i){
+  $$('.panel').forEach(p => p.classList.toggle('active', +p.dataset.step === i));
+  currentStep = i;
+  renderStepper();
+  $('#btnBack').classList.toggle('hidden', i === 0);
+  const last = i === STEPS.length-1;
+  $('#btnNext').style.display = last ? 'none' : 'inline-block';
+  $('#btnSubmit').style.display = last ? 'inline-block' : 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- Estado visual de las opciones ---------- */
+document.addEventListener('change', e => {
+  const inp = e.target;
+  if(inp.type !== 'radio' && inp.type !== 'checkbox') return;
+  if(inp.name){
+    $$(`input[name="${inp.name}"]`).forEach(sib => {
+      const opt = sib.closest('.opt');
+      if(opt) opt.classList.toggle('selected', sib.checked);
+    });
+  }
+  const group = inp.closest('.radio-group');
+  if(group) clearGroupError(group);
+  if(inp.id === 'acepto'){ $('#aceptoMsg').classList.remove('show'); }
+  if(inp.name === 'presencial'){
+    $('#presencialAlert').classList.toggle('show', inp.value === 'No');
+  }
+});
+
+/* ---------- Selección de secretaría (mouse + teclado) ---------- */
+function selectArea(card){
+  $$('.area-card').forEach(c => { c.setAttribute('aria-checked','false'); c.setAttribute('aria-pressed','false'); });
+  card.setAttribute('aria-checked','true');
+  card.setAttribute('aria-pressed','true');
+  const key = card.dataset.area;
+  selectedArea = key;
+  $('#areaInput').value = AREAS[key].label;   // guarda el nombre legible, no el slug
+  $('#areaMsg').classList.remove('show');
+  clearGroupError($('#areaGrid'));
+  buildAreaPanel(key);
+}
+$$('.area-card').forEach(card => {
+  card.addEventListener('click', () => selectArea(card));
+  card.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectArea(card); }
+  });
+});
+
+/* Solo reconstruye si cambió el área: si el usuario vuelve atrás y vuelve a
+   tocar la misma tarjeta, sus respuestas no se borran. */
+function buildAreaPanel(key){
+  if(builtArea === key) return;
+  builtArea = key;
+  const a = AREAS[key];
+  $('#areaTitle').textContent = 'Tu postulación: ' + a.label;
+
+  let html = '';
+  if(a.subareas.length){
+    html += `<div class="field">
+      <div class="field-label" id="lbl-sub">¿Qué subárea te interesa más?<span class="req">*</span></div>
+      <div class="radio-group" role="radiogroup" aria-labelledby="lbl-sub" data-group="subarea">
+        ${a.subareas.map(s => `<label class="opt"><input type="radio" name="subarea" value="${s}"><span class="opt-text">${s}</span></label>`).join('')}
+      </div><div class="msg"></div></div>`;
+  }
+  html += `
+    <div class="field">
+      <label for="area_porque">¿Por qué te ves en esta área en particular?<span class="req">*</span></label>
+      <textarea id="area_porque" name="area_porque" data-required></textarea><div class="msg"></div>
+    </div>
+    <div class="field">
+      <label for="area_experiencia">${a.exp}<span class="req">*</span></label>
+      <textarea id="area_experiencia" name="area_experiencia" data-required></textarea><div class="msg"></div>
+    </div>
+    <div class="field">
+      <label for="area_idea">${a.idea}<span class="req">*</span></label>
+      <textarea id="area_idea" name="area_idea" data-required></textarea><div class="msg"></div>
+    </div>`;
+  $('#areaFields').innerHTML = html;
+}
+
+/* ---------- Validación ---------- */
+const VALIDATORS = {
+  dni: v => /^\d{7,9}$/.test(v.replace(/\D/g,'')) || 'Ingresá un DNI válido (7 a 9 números, sin puntos).',
+  edad: v => (+v >= 15 && +v <= 99) || 'Ingresá una edad válida.',
+  tel: v => v.replace(/\D/g,'').length >= 8 || 'Ingresá un teléfono válido con característica.',
+  email: v => /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim()) || 'Ingresá un correo electrónico válido.'
+};
+
+function showFieldError(el, text){
+  el.classList.add('is-invalid');
+  const msg = el.closest('.field').querySelector('.msg');
+  if(msg){ msg.textContent = text; msg.classList.add('show'); }
+}
+function clearFieldError(el){
+  el.classList.remove('is-invalid');
+  const msg = el.closest('.field') && el.closest('.field').querySelector('.msg');
+  if(msg) msg.classList.remove('show');
+}
+function showGroupError(group, text){
+  group.classList.add('is-invalid-group');
+  const msg = group.parentElement.querySelector('.msg');
+  if(msg){ msg.textContent = text; msg.classList.add('show'); }
+}
+function clearGroupError(group){
+  group.classList.remove('is-invalid-group');
+  const msg = group.parentElement.querySelector('.msg');
+  if(msg) msg.classList.remove('show');
+}
+
+// limpia el error apenas el usuario empieza a corregir
+document.addEventListener('input', e => {
+  if(e.target.matches('input, textarea') && e.target.classList.contains('is-invalid')){
+    clearFieldError(e.target);
+  }
+});
+
+function validateStep(i){
+  const panel = document.querySelector(`.panel[data-step="${i}"]`);
+  let firstError = null;
+
+  panel.querySelectorAll('[data-required]').forEach(el => {
+    clearFieldError(el);
+    const val = el.value.trim();
+    if(!val){
+      showFieldError(el, 'Este campo es obligatorio.');
+      firstError = firstError || el;
+      return;
+    }
+    const rule = el.dataset.validate;
+    if(rule && VALIDATORS[rule]){
+      const res = VALIDATORS[rule](val);
+      if(res !== true){
+        showFieldError(el, res);
+        firstError = firstError || el;
+      }
+    }
+  });
+
+  panel.querySelectorAll('.radio-group[data-group]').forEach(group => {
+    const name = group.dataset.group;
+    if(!panel.querySelector(`input[name="${name}"]:checked`)){
+      showGroupError(group, 'Elegí una opción para continuar.');
+      firstError = firstError || group;
+    } else clearGroupError(group);
+  });
+
+  panel.querySelectorAll('[data-scale]').forEach(row => {
+    if(!row.dataset.value){
+      showGroupError(row, 'Elegí un valor del 1 al 10.');
+      firstError = firstError || row;
+    } else clearGroupError(row);
+  });
+
+  if(i === 2 && !selectedArea){
+    $('#areaMsg').classList.add('show');
+    $('#areaGrid').classList.add('is-invalid-group');
+    firstError = firstError || $('#areaGrid');
+  }
+
+  if(i === 4){
+    const acepto = $('#acepto');
+    if(!acepto.checked){
+      const m = $('#aceptoMsg');
+      m.textContent = 'Necesitamos tu confirmación para poder contactarte.';
+      m.classList.add('show');
+      firstError = firstError || acepto;
+    }
+    // La presencialidad en Buenos Aires es excluyente: bloquea el envío.
+    const pres = panel.querySelector('input[name="presencial"]:checked');
+    if(pres && pres.value === 'No'){
+      showGroupError(panel.querySelector('[data-group="presencial"]'), 'La presencialidad en Buenos Aires es requisito excluyente de esta convocatoria.');
+      firstError = firstError || pres;
+    }
+  }
+
+  // Lleva al usuario al primer error: antes el botón "no hacía nada"
+  // si el campo con problema quedaba fuera de pantalla.
+  if(firstError){
+    firstError.scrollIntoView({behavior:'smooth', block:'center'});
+    if(typeof firstError.focus === 'function'){
+      setTimeout(() => { try{ firstError.focus({preventScroll:true}); }catch(err){} }, 350);
+    }
+    return false;
+  }
+  return true;
+}
+
+/* ---------- Navegación ---------- */
+$('#btnNext').addEventListener('click', () => {
+  if(validateStep(currentStep)) showStep(Math.min(currentStep+1, STEPS.length-1));
+});
+$('#btnBack').addEventListener('click', () => showStep(Math.max(currentStep-1, 0)));
+
+// Enter en un input avanza de paso en lugar de enviar el formulario incompleto
+$('#form').addEventListener('keydown', e => {
+  if(e.key === 'Enter' && e.target.tagName === 'INPUT'){
+    e.preventDefault();
+    if(currentStep < STEPS.length-1) $('#btnNext').click();
+  }
+});
+
+/* ---------- Envío ---------- */
+$('#form').addEventListener('submit', async e => {
+  e.preventDefault();
+  if(submitting) return;                 // evita el doble envío por doble clic
+  if(!validateStep(currentStep)) return;
+
+  submitting = true;
+  const btn = $('#btnSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  const payload = {};
+  new FormData(e.target).forEach((v,k) => { payload[k] = v; });
+  payload.q_autonomia = scaleRow.dataset.value || '';
+  payload.area = $('#areaInput').value;
+  payload.enviado_el = new Date().toLocaleString('es-AR');
+
+  if(ENDPOINT_URL){
+    try{
+      await fetch(ENDPOINT_URL, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'}, // evita el preflight CORS de Apps Script
+        body: JSON.stringify(payload)
+      });
+    }catch(err){
+      console.error('Error al enviar la postulación:', err);
+      submitting = false;
+      btn.disabled = false;
+      btn.textContent = 'Reintentar envío';
+      const m = $('#aceptoMsg');
+      m.textContent = 'No pudimos enviar tu postulación. Revisá tu conexión y probá de nuevo.';
+      m.classList.add('show');
+      return;
+    }
+  } else {
+    console.log('Postulación (sin endpoint configurado):', payload);
+  }
+
+  // Oculta también el briefing y el stepper: quedaban visibles y contradecían
+  // la pantalla de confirmación.
+  $('#form').style.display = 'none';
+  $('#stepper').style.display = 'none';
+  $('#briefing').style.display = 'none';
+  $('#confirmScreen').classList.add('show');
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+/* ---------- Aviso si se cierra la pestaña con la postulación a medias ---------- */
+window.addEventListener('beforeunload', e => {
+  if(submitting) return;
+  const started = $$('#form input, #form textarea').some(el => el.value && el.type !== 'radio' && el.type !== 'checkbox');
+  if(started){ e.preventDefault(); e.returnValue = ''; }
+});
+
+renderStepper();
+showStep(0);
+</script>
+
+</body>
+</html>
