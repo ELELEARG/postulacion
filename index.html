@@ -347,7 +347,7 @@
 
       <div class="field">
         <label for="barrio">Barrio, localidad o partido de residencia<span class="req">*</span></label>
-        <input type="text" id="barrio" name="barrio" data-required autocomplete="address-level2" placeholder="Ej: Liniers / San Martín / La Plata">
+        <input type="text" id="barrio" name="barrio" data-required autocomplete="address-level2" placeholder="Ej: Caballito / San Martín / La Plata">
         <div class="msg"></div>
       </div>
       <div class="field">
@@ -507,6 +507,13 @@
     </div>
   </form>
 
+  <div class="confirm" id="closedScreen" role="status">
+    <h2>CONVOCATORIA CERRADA</h2>
+    <p>La postulación a las Secretarías 2026 cerró el <span id="closedDate">25/09/2026</span>. Gracias por el interés.</p>
+    <p>Seguí a El Eje en redes para enterarte de las próximas convocatorias.</p>
+    <div class="signature">Los jóvenes primero. — El Eje</div>
+  </div>
+
   <div class="confirm" id="confirmScreen" role="status" aria-live="polite">
     <div class="compass">
       <img src="logo.png" alt="Logo El Eje" width="320" height="320">
@@ -531,6 +538,17 @@
    Sheet, o de Formspree / un backend propio.
 ============================================================ */
 const ENDPOINT_URL = (window.ELEJE_CONFIG && window.ELEJE_CONFIG.endpoint) || "";
+// Fecha y hora de cierre (hora argentina). Se cambia en config.js.
+const CIERRE = new Date((window.ELEJE_CONFIG && window.ELEJE_CONFIG.cierre) || "2026-09-25T23:59:59-03:00");
+const convocatoriaCerrada = () => !isNaN(CIERRE) && Date.now() > CIERRE.getTime();
+function mostrarCierre(){
+  submitting = true; // desactiva el aviso de "cambios sin guardar"
+  $('#form').style.display = 'none';
+  $('#stepper').style.display = 'none';
+  $('#briefing').style.display = 'none';
+  $('#closedScreen').classList.add('show');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 
 const AREAS = {
   admision:{
@@ -825,6 +843,7 @@ $('#form').addEventListener('submit', async e => {
   e.preventDefault();
   if(submitting) return;                 // evita el doble envío por doble clic
   if(!validateStep(currentStep)) return;
+  if(convocatoriaCerrada()){ mostrarCierre(); return; }
 
   submitting = true;
   const btn = $('#btnSubmit');
@@ -839,13 +858,18 @@ $('#form').addEventListener('submit', async e => {
 
   if(ENDPOINT_URL){
     try{
+      // Corta a los 45 s: sin esto, con mala conexión el botón quedaba en "Enviando…" para siempre.
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 45000);
       const res = await fetch(ENDPOINT_URL, {
         method:'POST',
+        signal: ctrl.signal,
         headers:{'Content-Type':'text/plain;charset=utf-8'}, // evita el preflight CORS de Apps Script
         body: JSON.stringify(payload)
       });
       // Apps Script responde {ok:true} solo si la fila quedó guardada en la hoja.
       const out = await res.json().catch(() => ({}));
+      clearTimeout(timer);
       if(!res.ok || !out.ok) throw new Error(out.error || ('HTTP ' + res.status));
     }catch(err){
       console.error('Error al enviar la postulación:', err);
@@ -879,6 +903,7 @@ window.addEventListener('beforeunload', e => {
 
 renderStepper();
 showStep(0);
+if(convocatoriaCerrada()) mostrarCierre();
 </script>
 
 </body>
