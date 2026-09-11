@@ -847,11 +847,14 @@ $('#form').addEventListener('submit', async e => {
 
   if(ENDPOINT_URL){
     try{
-      await fetch(ENDPOINT_URL, {
+      const res = await fetch(ENDPOINT_URL, {
         method:'POST',
         headers:{'Content-Type':'text/plain;charset=utf-8'}, // evita el preflight CORS de Apps Script
         body: JSON.stringify(payload)
       });
+      // Apps Script responde {ok:true} solo si la fila quedó guardada en la hoja.
+      const out = await res.json().catch(() => ({}));
+      if(!res.ok || !out.ok) throw new Error(out.error || ('HTTP ' + res.status));
     }catch(err){
       console.error('Error al enviar la postulación:', err);
       submitting = false;
