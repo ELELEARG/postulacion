@@ -82,11 +82,11 @@ function getSheet_() {
   return sheet;
 }
 
-// Texto plano y protección contra fórmulas inyectadas (=, @, o +/- seguidos de algo que no sea número).
+// Fuerza texto plano: evita fórmulas inyectadas y que '+54 11...' se lea como fórmula (#ERROR!).
 function clean_(v) {
   if (v === undefined || v === null) return '';
   let s = String(v).trim().slice(0, 5000);
-  if (/^[=@]/.test(s) || /^[+\-][^\d\s(]/.test(s)) s = "'" + s;
+  if (/^[=+\-@]/.test(s)) s = "'" + s;
   return s;
 }
 
